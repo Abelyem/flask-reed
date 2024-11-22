@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Search results
+{% endblock %}
+
+{% block heading %}
+Search results
+{% endblock %}
+
+ 
+ {% block content %}
+
+ <div class="row">
+     {% for r in response.results %}
+
+     <div class="col s12 m4">
+         <div class="card blue-grey darken-1">
+             <div class="card-content white-text">
+                 <span class="card-title">{{ r.jobTitle  }}</span>
+                 <p><strong>{{ r.employerName }}</strong></p>
+             
+                 <p>Location: {{ r.locationName }}</p>
+                 <p>Minimum Salary: £{{ r.minimumSalary }}</p>
+                 <p>Maximum Salary: £{{ r.maximumSalary }}</p>
+                 <p>Job expires: {{ r.expirationDate }} </p>
+                 <p>Date posted: {{ r.date }} </p>
+                 <p>{{ r.jobDescription }}</p>
+             </div>
+         <div class="card-action">
+           <a href="{{ r.jobUrl }}" target="_blank">{{ r.jobTitle  }}</a>
+         </div>
+       </div>
+     </div>
+     {% endfor %}
+ </div>  
+
+
+ {% endblock %}

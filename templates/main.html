@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css')}}">
+
+    <title>{% block title %}Job Listings{% endblock %}</title>
+</head>
+<body>
+
+    <h2>{% block heading %}Job Listings{% endblock %}</h2>
+    
+    {% block content %}   
+
+    <div class="row main-search-field">
+        <form class="col s12" method="GET">
+          <div class="row">
+            <div class="input-field col s6">
+              <!-- <i class="material-icons prefix">account_circle</i> -->
+              <input id="" type="text" class="validate" name="job-title">
+              <!-- <label for="search">Search</label> -->
+            </div>
+            <div class="input-field col s6">
+              <!-- <i class="material-icons prefix">phone</i> -->
+              <input id="" type="tel" class="validate" name="location">
+              <!-- <label for="location">Location</label> -->
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit search
+            <!-- <i class="material-icons right">send</i> -->
+          </button>
+        </form>
+      </div>
+
+    <div class="row">
+        {% for r in response.results %}
+
+        <div class="col s12 m4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{{ r.jobTitle  }}</span>
+                    <p><strong>{{ r.employerName }}</strong></p>
+                
+                    <p>Location: {{ r.locationName }}</p>
+                    <p>Minimum Salary: £{{ r.minimumSalary }}</p>
+                    <p>Maximum Salary: £{{ r.maximumSalary }}</p>
+                    <p>Job expires: {{ r.expirationDate }} </p>
+                    <p>Date posted: {{ r.date }} </p>
+                    <p>{{ r.jobDescription }}</p>
+                </div>
+            <div class="card-action">
+              <a href="{{ r.jobUrl }}" target="_blank">{{ r.jobTitle  }}</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>  
+
+
+    {% endblock %}
+    
+</body>
+</html>
