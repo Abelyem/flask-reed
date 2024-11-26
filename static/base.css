@@ -1,8 +1,7 @@
-.main-search-field {
-    width: 60%;
+body {
+    margin: 2rem;
 }
 
-.job-results-container {
-    height: 25%;
-    background-color: red;
+.main-search-field {
+    width: 60%;
 }
